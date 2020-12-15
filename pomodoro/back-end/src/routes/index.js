@@ -1,7 +1,7 @@
+const { Router } = require("../app")
 const express = require ("express")
-const { route } = require("../app")
 
-const router = express.Router()
+const router = express.Router();
 
 router.get("/api", (req, res) => {
     res.status(200).send({
