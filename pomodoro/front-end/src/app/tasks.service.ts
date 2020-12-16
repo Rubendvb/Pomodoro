@@ -6,9 +6,15 @@ import { HttpClient } from '@angular/common/http'
 })
 export class TasksService {
 
+
   constructor(private http: HttpClient) { }
 
-  tasks() {
-    return this.http.get('http://localhost:3000/tasks')
+  getTasks() {
+    return this.http.get('http://localhost:3000/api/tasks')
   }
+
+  postTask() {
+    
+  }
+
 }

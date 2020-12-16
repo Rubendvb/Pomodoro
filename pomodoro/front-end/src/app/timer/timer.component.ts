@@ -11,107 +11,105 @@ export class TimerComponent implements OnInit {
 
   title: string = 'Timer';
   minutos: number;
+  minutos2: number;
   segundos: number;
-  Paused: boolean = true;
+  segundos2: number;
   vezes: number = 0;
-
+  paused: boolean = true;
+  paused2: boolean = true;
+  
   buttonLabel: string;
+  buttonLabel2: string;
+  
   relogio: any;
-
-  tarefas = [];
-
-  item: any = '';
-  item2: any = '';
-
-  lista: any = this.tarefas;
-  ocultarEdit: boolean = true;
-
-  aggTarefa():void {
-    if (this.vezes % 4 === 0) {
-      this.minutos = 25
-      this.segundos = 0
-    }
-
-    this.tarefas.push(this.item);
-    this.item = '';
-  }
-
-
-  myValue;
-  editTarefa(i): void {
-    this.ocultarEdit = false;
-    this.item2 = this.tarefas[i];
-    this.myValue = i;
-  }
-
-  actTarefa(): void {
-    this.ocultarEdit = true;
-    let i = this.myValue;
-    for ( let j = 0; j < this.tarefas.length; j++) {
-      if (i == j) {
-        this.tarefas[i] = this.item2;
-        this.item2 = '';
-        console.log(this.item2.value);
-      }
-    }
-  }
-
-  deletTarefa(i) {
-    var resposta = confirm('Deseja eliminar tarefa?');
-    if (resposta) {
-      this.tarefas.splice( i, 1)
-    }
-  }
-
-
+  relogio2: any;
+  confirmar: any; //Mensagem na tela
+  confirmar2: any;
+  
+  
   constructor() {
     this.contar();
     setInterval(() => this.tick(), 10);
   }
 
+  
+  ngOnInit(): void {
+    this.minutos = 25;
+    this.segundos = 0;
+    this.segundos2 = 0;
+    this.minutos2 = 5;
+    this.buttonLabel = 'Empezar';
+  }
+  
   contar(): void {
     this.minutos = 25;
     this.segundos = 0;
+    this.minutos2 = 5;
+    this.segundos2 = 0;
     this.buttonLabel = 'Empezar';
+    this.buttonLabel2 = 'Empezar';
+  }
+
+  redefinirPomo(): void {
+    this.minutos = 25;
+    this.segundos = 0;
+    this.confirmar = "";
   }
 
 
   private tick(): void {
-    if(this.minutos < 24 || this.segundos <59) {
-      this.buttonLabel = this.Paused ? 'Recomeçar' : 'Detener';
-    }
-
-    if(!this.Paused) {
+    if(!this.paused) {
       this.buttonLabel = 'Detener';
 
       if(--this.segundos < 0) {
         this.segundos = 59;
         if(--this.minutos < 0) {
-          this.minutos = 24;
-          this.segundos = 59;
+          this.minutos = 0;
+          this.segundos = 0;
+         }
+
+         if(this.minutos > 0 && this.segundos  < 60) {
+          this.confirmar = 'Hora de trabalhar'
+
+        }
+        if(this.minutos === 0 && this.segundos  === 0) {
+          this.confirmar = 'Hora de descansar ou reset para voltar'
         }
       }
     }
   }
 
   iniciarPomo(): void{
-    this.Paused = !this.Paused;
+    this.paused = !this.paused;
 
-    if (!this.Paused && this.relogio === undefined) {
+    if (!this.paused && this.relogio === undefined) {
       this.relogio = setInterval(() => this.tick(), 1000);
     }
   }
 
-
-  ngOnInit(): void {
-    this.minutos = 25;
-    this.segundos = 0;
-    this.buttonLabel = 'Empezar';
+  descansarPomo() {
+    this.paused2 = !this.paused2;
+    if (!this.paused2 && this.relogio2 === undefined) {
+      this.relogio2 = setInterval(() => this.tack(), 10);
+      if(this.segundos2 > 0) { }
+   }
   }
 
+  private tack(): void {
+    if(!this.paused2) {
+      this.buttonLabel2 = 'Detener';
+
+
+      if(--this.segundos2 < 0) {
+        this.segundos2 = 59;
+        if(--this.minutos2 < 0) {
+          this.minutos2 = 0;
+          this.segundos2 = 0;
+        }
+        if(this.minutos2 == 0 && this.segundos2 < 0) {
+          this.confirmar2 =  "Reset para voltar ao trabalho";
+        }
+      }
+    }
+  }
 }
-
-
-    // if (!this.Paused && this.relogio === undefined) {
-    //   this.relogio = setInterval(() => this.tick(), 1000);
-    // }

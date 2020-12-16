@@ -1,1 +1,54 @@
-{{ tarefas | json }}
+<div class="col-sm-2">
+  <div class="form-group" *frm="ngFor" (ngSubmit)='postTask(frm)'>
+    <label for="tarefa" class="control-label">Tarefa: </label>
+    <div>
+      <input type="text" class="form-control" id="tarefa" name="tarefa" [(ngModel)]="item">
+    </div>
+    <button type="submit" class="button1" (click)="aggTarefa()">Agregar Tarefa</button>
+  </div>
+</div>
+
+<div class="row" *ngIf="tasks.length > 0">
+  <div class="col-sm-6">
+    <h2>Lista: </h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="text-center">
+          <th>Tarefa</th>
+          <th>Opcões</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center" *ngFor="let task of tasks; let i = index">
+          <td> {{ task.task }} </td>
+          <td>
+            <button (click)="iniciarPomo()" class="button2">Iniciar Pomodoro</button>
+            <button (click)="descansarPomo()" class="button1">Descanso</button>
+            <button (click)="redefinirPomo()" class="button2">Reset pomo</button>
+            <button (click)="redefinirdescanso()" class="button1">Reset descanso</button>
+            <button (click)="editTarefa(i)" class="button3">Editar</button>
+            <button (click)="deletTarefa(i)" class="button4">Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <div class="col-sm-12" [hidden]="ocultarEdit">
+      <h2>Editar</h2>
+      <form class="form-horizontal">
+        <div class="form-group">
+          Tarefa:
+          <label for="tarefa" class="control-label col-sm-14">
+            <input class="col-sm-10" type="text" class="form-control" id="tarefa" name="tarefa" [(ngModel)]="item2" placeholder="Insira sua nova Tarefa">
+          </label>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+          <button type="submit" class="button1" (click)="actTarefa()">Guardar</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

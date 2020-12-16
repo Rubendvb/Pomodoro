@@ -1,4 +1,4 @@
-const { Router } = require("../app")
+const { Router } = require("express")
 const express = require ("express")
 
 const router = express.Router();
@@ -8,7 +8,7 @@ router.get("/api", (req, res) => {
         success : "true",
         message : "Seja bem-vindo",
         version : "1.0.0"
-    })
-})
+    });
+});
 
 module.exports = router
