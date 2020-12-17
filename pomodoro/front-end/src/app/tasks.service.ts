@@ -18,7 +18,17 @@ export class TasksService {
     console.log(task_id)
     return this.http.get(`${this.url}/${task_id}`)
   }
-
+  
+  
+  
+  createdNewTask(task) {
+    const tarefa = {  
+      task 
+    }
+    
+    return this.http.post(this.url, tarefa).subscribe()
+  }
+  
   updateTask(task: any, task_id) {
    console.log(task_id)
     const tasks = {
@@ -29,20 +39,8 @@ export class TasksService {
     return this.http.put(`${this.url}/${task_id}`, tasks).subscribe((res) => console.log('aaaaaaaaaaaaaaaa'))
    } 
   
-  deleteTask(id) {
-    console.log('serviço')
-    return this.http.delete(`${this.url}/${id}`)
-  }
-  createdNewTask(task) {
-    const tarefa = {  
-      task 
+   deleteTask(id) {
+      return this.http.delete(`${this.url}/${id}`)
     }
-    console.log(task)
     
-    return this.http.post(this.url, tarefa).subscribe((res) =>
-    console.log('aquiiii')
-    )
-  }
-
-
 }

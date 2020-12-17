@@ -24,11 +24,9 @@ export class TaskComponent implements OnInit {
     }
     
     deleteTask(id: any) {
-      var resposta = confirm('Deseja eliminar tarefa?');
-      if (resposta) {
-        this.tasks.splice(id, 1)
-      }
-      console.log(id)    
+      this.tasksService.deleteTask(id).subscribe();
+        const index = this.tasks.indexOf(id);
+        this.tasks.splice(index, 1);
      } 
   
      createdNewTask(task) {
