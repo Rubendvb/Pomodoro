@@ -29,15 +29,8 @@ export class TaskComponent implements OnInit {
     }
     
     editTask() {
-      console.log(this.tasks)
-      this.tasks
+      console.log('editando')
     }
-
-    updateTask(id: any) {
-      //this.tasksService.updateTask()
-    }
-    
-    
     deleteTask(id: any) {
     this.tasksService.deleteTask(id).subscribe();
     const index = this.tasks.indexOf(id);

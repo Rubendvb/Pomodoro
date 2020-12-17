@@ -11,12 +11,12 @@ export class TasksService {
   constructor(private http: HttpClient) { }
   
   getTasks() {
-    return this.http.get(`${this.url}`)
+    return this.http.get(`${ this.url }`)
   }
 
   editTask(task_id) {
     console.log(task_id)
-    return this.http.get(`${this.url}/${task_id}`)
+    return this.http.get(`${ this.url }/${ task_id }`)
   }
   
   
@@ -36,7 +36,7 @@ export class TasksService {
       task_id,
     }
     console.log(tasks)
-    return this.http.put(`${this.url}/${task_id}`, tasks).subscribe((res) => console.log('aaaaaaaaaaaaaaaa'))
+    return this.http.put(`${ this.url }/${ task_id }`, tasks).subscribe((res) => console.log('aaaaaaaaaaaaaaaa'))
    } 
   
    deleteTask(id) {
