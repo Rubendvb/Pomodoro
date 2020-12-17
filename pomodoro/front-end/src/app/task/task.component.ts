@@ -23,17 +23,24 @@ export class TaskComponent implements OnInit {
       })
     }
     
-    deleteTask(id: any) {
-      this.tasksService.deleteTask(id).subscribe();
-        const index = this.tasks.indexOf(id);
-        this.tasks.splice(index, 1);
-     } 
-  
-     createdNewTask(task) {
-     this.tasksService.createdNewTask(task)
+    
+    createdNewTask(task) {
+      this.tasksService.createdNewTask(task)
+    }
+    
+    editTask() {
+      console.log(this.tasks)
+      this.tasks
     }
 
-    editTask() {
-      console.log('editando')
+    updateTask(id: any) {
+      //this.tasksService.updateTask()
     }
-}
+    
+    
+    deleteTask(id: any) {
+    this.tasksService.deleteTask(id).subscribe();
+    const index = this.tasks.indexOf(id);
+        this.tasks.splice(index, 1);
+     } 
+  }

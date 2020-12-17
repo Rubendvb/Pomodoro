@@ -22,11 +22,11 @@
         <tr class="text-center" *ngFor="let task of tasks; let i = index">
           <td> {{ task.task }} </td>
           <td>
-            <!-- <button (click)="iniciarPomo()" class="button2">Iniciar Pomodoro</button>
             <button (click)="descansarPomo()" class="button1">Descanso</button>
             <button (click)="redefinirPomo()" class="button2">Reset pomo</button>
-            <button (click)="redefinirdescanso()" class="button1">Reset descanso</button> -->
-            <button (click)="editTask(task.task_id)" class="button3">Editar</button>
+            <button (click)="redefinirdescanso()" class="button1">Reset descanso</button> 
+            <button (click)="startPomo()" class="button2">Iniciar Pomodoro</button>
+            <button (click)="editTask()" class="button3">Editar</button>
             <button (click)="deleteTask(task.task_id)" class="button4">Deletar</button>
           </td>
         </tr>
@@ -40,7 +40,7 @@
         <div class="form-group">
           Tarefa:
           <label for="tarefa" class="control-label col-sm-14">
-            <input class="col-sm-10" type="text" class="form-control" id="tarefa" name="tarefa" placeholder="Insira sua nova Tarefa">
+            <input class="col-sm-10" type="text" class="form-control" id="task2" name="task" placeholder="Insira sua nova Tarefa" (click)="updateTask(task.task_id)">
           </label>
       </div>
       <div class="form-group">
