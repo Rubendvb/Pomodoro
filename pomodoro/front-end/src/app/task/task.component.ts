@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../tasks.service';
 import { Task } from '../models/Task'
-import { BoundElementPropertyAst } from '@angular/compiler';
 
 @Component({
   selector: 'app-task',
@@ -11,7 +10,7 @@ import { BoundElementPropertyAst } from '@angular/compiler';
 export class TaskComponent implements OnInit {
   
   tasks: Task[];
-  
+
   ocultarEdit: boolean = true;
 
   // ============ Relógio ============
@@ -61,10 +60,20 @@ export class TaskComponent implements OnInit {
     
     createdNewTask(task) {
       this.tasksService.createdNewTask(task)
+      
     }
+
     
-    editTask() {
+    editTask(): void {
+      this.ocultarEdit = false;
+      
       console.log('editando')
+    }
+
+    updateTask(task, task_id){
+      this.ocultarEdit = true;
+
+      this.tasksService.updateTask(task, task_id)
     }
     
     deleteTask(id: any) {
@@ -120,6 +129,12 @@ contar(): void {
     }
   }
 
+   redefinirdescanso(): void {
+      this.minutos2 = 5;
+      this.segundos2 = 0;
+
+    }
+
   descansarPomo() {
     this.paused2 = !this.paused2;
     if (!this.paused2 && this.relogio2 === undefined) {
@@ -146,6 +161,4 @@ contar(): void {
     }
   }
 
-
- 
 }

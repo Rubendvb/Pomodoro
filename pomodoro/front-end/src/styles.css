@@ -1,6 +1,53 @@
-body {
+/*body {
     background: url("./assets/img/pomodorojpg.jpg");
     background-position: center center center center;
     background-repeat: no-repeat;
     background-size: 100%;
+}*/
+
+body {
+    background-color: white;
+    background-size: 100%;
+    font-family: 'nunito', sans-serif!important;
+}
+
+*{
+    color: #666669!important;
+}
+
+input{
+	width: 100%!important;
+}
+button{
+	padding-top: 8px!important;
+    padding-bottom: 8px!important;
+}
+
+.fondo_timer{
+	background-color: #f15569;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.cont_options, .lista_opt, .options, .cont_time_c {
+	display: flex;
+}
+
+.options i{
+	font-size: 15px;
+}
+
+.options p{
+	font-size: 11px;
+}
+.s_task{
+	width: 100%;
+}
+
+.s_time{
+	font-size: 75px;
+}
+
+.cont_time_c{
+	justify-content: center;
 }

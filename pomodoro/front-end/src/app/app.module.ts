@@ -12,7 +12,7 @@ import { TasksService } from './tasks.service'
 @NgModule({
   declarations: [
     AppComponent,
-    /* TimerComponent, */
+    // TimerComponent,
     TaskComponent
   ],
   imports: [

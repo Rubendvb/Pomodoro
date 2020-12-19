@@ -1,17 +1,123 @@
-<div class="container">
-  <div class="col-md-4 offset-md-4">
-    <h1 class="text-center"> {{ title }} </h1>
-    <div class="container, text-center">
-      <div class="font-weight-bold"> {{ confirmar }} </div>
-      <div class="font-weight-bold"> Començar {{ minutos }} : {{ segundos}}  </div>
-      <br>
-      <div class="font-weight-bold"> {{ confirmar2 }} </div>
-      <div class="font-weight-bold"> Descansar {{ minutos2 }} : {{ segundos2}} </div>
-    </div>
+<div class="row fondo_timer">
+  <div class="col-12">
+    <h1 class="text-center text-white"> {{ title }} </h1>
   </div>
+
+  <div class="col-6 cont_time_c">
+    <h3 class="text-white pt-5">Començar: </h3>
+    <h5 class="text-white font-weight-bold s_time pt-1">{{ minutos | number:'2.0' }} : {{ segundos | number:'2.0' }}</h5>
+  </div>
+
+  <div class="col-1 cont_time_c">
+    <h5 class="text-white font-weight-bold s_time">/</h5>
+  </div>
+
+  <div class="col-5 cont_time_c">
+    <h3 class="text-white pt-5">Descansar: </h3>
+    <h5 class="text-white font-weight-bold s_time pt-1">{{ minutos2 | number:'2.0' }} : {{ segundos2 | number:'2.0'}}</h5>
+  </div>
+
 </div>
 
-<div class="col-sm-2">
+
+<div class="container cont_task mb-5 mt-5">
+  <div class="row p-6 mb-6">
+    <div class="col-8">
+      <label for="tarefa" class="control-label"> Nova Tarefa: </label>
+        <input type="text" class="form-control" id="task" name="task" #task>
+    </div>
+
+    <div class="col-4 pt-4">
+      <button type="submit" class="button1 text-white" (click)="createdNewTask(task.value)">Agregar Tarefa</button>
+    </div>
+  </div>
+
+  <div class="row p-6 mt-5">
+    <div class="col-12">
+      <div class="card card-tasks">
+        <div class="card-header ">
+          <p class="card-category">Lista Tarefa</p>
+        </div>
+        <div class="card-body">
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th class="s_task">Tarefas</th>
+                <th class="text-center">Opcões</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-center" *ngFor="let task of tasks; let i = index">
+                <td> {{ task.task | uppercase}} </td>
+                <td class="cont_options">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item lista_opt pt-0 pb-0">
+                       <a class="options mr-4 pr-4" (click)="iniciarPomo()" title="INICIAR POMODORO">
+                        <i class="fas fa-play-circle text-success"></i>
+                        <p class="text-success mb-1">INICIAR</p>
+                      </a>
+
+                      <a class="options mr-4 pr-5 pl-3" (click)="descansarPomo()" title="DESCANSO">
+                        <i class="fas fa-hourglass-start text-info"></i>
+                        <p class="text-info mb-1">DESCANSO</p>
+                      </a>
+
+                      <a class="options mr-4 pl-3" (click)="editTask(i)" title="EDITAR">
+                        <i class="fas fa-edit text-info"></i>
+                        <p class="text-info mb-1">EDITAR</p>
+                      </a>                     
+
+                    </li>
+
+                    <li class="list-group-item lista_opt pt-0 pb-0 mt-2">
+                       <a class="options mr-4" (click)="redefinirPomo()" title="RESET POMO">
+                        <i class="fas fa-angle-double-right text-secondary"></i>
+                        <p class="text-secondary mb-1">RESET POMO</p>
+                      </a>
+
+                      <a class="options mr-4 pl-2" (click)="redefinirdescanso()" title="RESET DESCANSO">
+                        <i class="fas fa-arrow-alt-circle-right text-secondary"></i>
+                        <p class="text-secondary mb-1">RESET DESCANSO</p>
+                      </a>
+
+                      <a class="options ml-4" (click)="deleteTask(task.task_id)" title="DELETAR">
+                        <i class="fas fa-trash-alt text-danger"></i>
+                        <p class="text-danger mb-1">DELETAR</p>
+                      </a>
+
+                    </li>
+                  </ul>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+     <div class="col-sm-12" [hidden]="ocultarEdit">
+        <h2>Editar</h2>
+        <form class="form-horizontal">
+          <div class="form-group text-center">
+            Tarefa:
+            <label for="tarefa" class="control-label col-sm-14">
+              <input class="col-sm-10" type="text" class="form-control" #tarefa id="tarefa" name="tarefa" placeholder="Insira sua nova Tarefa">
+            </label>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2 text-center">
+            <button type="submit" class="button1 text-white" (click)="updateTask(tarefa.value, 95)">Guardar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- <div class="col-sm-2">
   <div class="form-group">
     <label for="tarefa" class="control-label">Tarefa: </label>
     <div>
@@ -19,9 +125,9 @@
     </div>
     <button type="submit" class="button1" (click)="createdNewTask(task.value)">Agregar Tarefa</button>
   </div>
-</div>
+</div> -->
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-sm-6">
     <h2>Lista: </h2>
     <table class="table table-bordered">
@@ -35,11 +141,11 @@
         <tr class="text-center" *ngFor="let task of tasks; let i = index">
           <td> {{ task.task }} </td>
           <td>
+            <button (click)="iniciarPomo()" class="button2">Iniciar Pomodoro</button>
             <button (click)="descansarPomo()" class="button1">Descanso</button>
             <button (click)="redefinirPomo()" class="button2">Reset pomo</button>
-            <button (click)="redefinirdescanso()" class="button1">Reset descanso</button> 
-            <button (click)="startPomo()" class="button2">Iniciar Pomodoro</button>
-            <button (click)="editTask()" class="button3">Editar</button>
+            <button (click)="redefinirdescanso()" class="button1">Reset descanso</button>
+            <button (click)="editTask(task.task_id)" class="button3">Editar</button>
             <button (click)="deleteTask(task.task_id)" class="button4">Deletar</button>
           </td>
         </tr>
@@ -53,7 +159,7 @@
         <div class="form-group">
           Tarefa:
           <label for="tarefa" class="control-label col-sm-14">
-            <!-- <input class="col-sm-10" type="text" class="form-control" id="task2" name="task" placeholder="Insira sua nova Tarefa" (click)="updateTask(task.task_id)"> -->
+            <input class="col-sm-10" type="text" class="form-control" id="tarefa" name="tarefa" placeholder="Insira sua nova Tarefa">
           </label>
       </div>
       <div class="form-group">
@@ -65,3 +171,4 @@
 
   </div>
 </div>
+</div> -->
