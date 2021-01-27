@@ -37,7 +37,7 @@ export class TaskComponent implements OnInit {
   constructor(private tasksService: TasksService) { 
 
     this.contar();
-    setInterval(() => this.tick(), 10);
+    setInterval(() => this.tick(), 10000);
   }
   
   

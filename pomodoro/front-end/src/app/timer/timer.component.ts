@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/* import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../tasks.service';
 import { Task } from '../models/Task'
 import { BoundElementPropertyAst } from '@angular/compiler';
@@ -148,4 +148,4 @@ contar(): void {
 
 
  
-}
+} */
