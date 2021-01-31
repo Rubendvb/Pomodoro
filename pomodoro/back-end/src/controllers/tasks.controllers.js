@@ -29,7 +29,7 @@ exports.findTaskById = async (req, res) => {
   res.status(200).send(response.rows);
 }
 
-// ==> Método responsável por atualizar um 'Product' pelo 'Id':
+// ==> Método responsável por atualizar uma 'Task' pelo 'Id':
 exports.updateTaskById = async (req, res) => {
   const taskId = parseInt(req.params.id);
   const { task } = req.body;
