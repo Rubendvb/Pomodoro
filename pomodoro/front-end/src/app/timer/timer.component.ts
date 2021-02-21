@@ -1,13 +1,20 @@
+/* import { Component, OnInit } from '@angular/core';
+import { TasksService } from '../tasks.service';
+import { Task } from '../models/Task'
 import { BoundElementPropertyAst } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-
 
 @Component({
-  selector: 'app-timer',
-  templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css']
+  selector: 'app-task',
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.css']
 })
-export class TimerComponent implements OnInit {
+export class TaskComponent implements OnInit {
+  
+  tasks: Task[];
+  
+  ocultarEdit: boolean = true;
+
+  // ============ Relógio ============
 
   title: string = 'Timer';
   minutos: number;
@@ -25,23 +32,49 @@ export class TimerComponent implements OnInit {
   relogio2: any;
   confirmar: any; //Mensagem na tela
   confirmar2: any;
+
+  // ======================================
   
-  
-  constructor() {
+  constructor(private tasksService: TasksService) { 
+
     this.contar();
     setInterval(() => this.tick(), 10);
   }
-
+  
   
   ngOnInit(): void {
+    
+    this.tasksService.getTasks().subscribe((data: Task[]) => {
+      this.tasks = data
+    })
+      
+    // =============== Relógio ===============
     this.minutos = 25;
     this.segundos = 0;
     this.segundos2 = 0;
     this.minutos2 = 5;
     this.buttonLabel = 'Empezar';
-  }
-  
-  contar(): void {
+    //====================================
+
+    }
+    
+    
+    createdNewTask(task) {
+      this.tasksService.createdNewTask(task)
+    }
+    
+    editTask() {
+      console.log('editando')
+    }
+    
+    deleteTask(id: any) {
+    this.tasksService.deleteTask(id).subscribe();
+    const index = this.tasks.indexOf(id);
+        this.tasks.splice(index, 1);
+     } 
+
+     //================Relógio=============
+contar(): void {
     this.minutos = 25;
     this.segundos = 0;
     this.minutos2 = 5;
@@ -112,4 +145,7 @@ export class TimerComponent implements OnInit {
       }
     }
   }
-}
+
+
+ 
+} */

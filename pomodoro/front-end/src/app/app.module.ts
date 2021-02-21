@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
-import { TimerComponent } from './timer/timer.component';
+// import { TimerComponent } from './timer/timer.component';
 import { TaskComponent } from './task/task.component';
 
 import { TasksService } from './tasks.service'
@@ -12,7 +12,7 @@ import { TasksService } from './tasks.service'
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent,
+    // TimerComponent,
     TaskComponent
   ],
   imports: [
